@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assests/gu-favicon.png')}}" type="image/x-icon">
+    <title>Galgotias Hospital</title>
+    <style>
+        /* Style for the circular button */
+        .circle-button {
+            background-color: #007bff;
+            /* Set button background color */
+            color: #fff;
+            /* Set button text color */
+            width: 60px;
+            /* Set button width */
+            height: 60px;
+            /* Set button height */
+            border-radius: 50%;
+            /* Make the button circular */
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            /* Position the button */
+            bottom: 20px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 9999;
+            /* Set z-index to ensure it's above other elements */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            /* Add shadow for depth */
+            transition: background-color 0.3s ease;
+            /* Add transition effect for smoother hover */
+        }
+
+        /* Change button background color on hover */
+        .circle-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style for the navigation bar */
+        .navbar {
+            position: fixed;
+            /* Position the navigation bar */
+            bottom: calc(20px + 60px + 10px);
+            /* Position just above the circular button */
+            right: calc(20px + 60px + 10px);
+            /* Position just to the left of the circular button */
+            z-index: 9998;
+            /* Set z-index to ensure it's above the circular button */
+            background-color: #f8f9fa;
+            /* Set navigation bar background color */
+            border: 1px solid #ddd;
+            /* Add border */
+            border-radius: 5px;
+            /* Add border radius */
+            padding: 10px;
+            /* Add padding */
+            display: none;
+            /* Initially hide the navigation bar */
+        }
+
+        /* Style for navigation bar links */
+        .navbar a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+            /* Add transition effect */
+        }
+
+        /* Change link background color on hover */
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <style>
+        #message {
+            display: none;
+            color:green;
+            font-size: 18px;
+        }
+    </style>
+    <!-- <style>
+        #flash-message {
+            color: green;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style> -->
+
+   
+
+
+</head>
+
+
+<body>
+    <div>
+        <!-- Navbar -->
+        <nav class="head-nav">
+            <div class="container-fluid icon-and-button">
+                <a class="navbar-brand" href="https://www.galgotiasuniversity.edu.in/">
+                    <img src="{{ url_for('static', filename='assests/logo-gu.png')}}" width="300px" alt="">
+                </a>
+
+                <button class="btn btn-warning text-white shadow">
+
+                    <img src="{{ url_for('static', filename='assests/phone-volume-solid.svg')}}" width="20px"
+                        style="color:white" alt="">
+                    &nbsp;
+                    +91 8969660365
+
+                </button>
+                <!-- Circular button -->
+                <!-- <button class="circle-button" onclick="toggleNavbar()">+</button> -->
+                <!-- Navigation bar -->
+                <div class="navbar" id="navbar">
+                    <!-- templates/index.html -->
+                    <nav>
+                        <ul>
+                            <a href="/">Home</a>
+
+                            <a href="/about">About Us</a> <!-- Add this line -->
+                        </ul>
+                    </nav>
+
+                    <!-- Add more navigation links as needed -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Top Section or Header -->
+        <section class="top-section">
+            <div class="header">
+                <div class="details">
+                    <h2>The Galgotias World of Care</h2>
+                    <h1>Search Your Doctor, Make an appointment</h1>
+                    <p>The best of modern healthcare to ensure you stay healthy, always.</p>
+                </div>
+                <form id="myForm" action="/make_an_appointment" method="POST"
+                    class="form-container py-4 px-5 rounded-2 shadow">
+                    <h2 class="fs-4">Make an appointment</h2>
+                    <div class="mb-3">
+                        <input type="text" name="name" placeholder="Name" class="form-control" id="patient-name"
+                            aria-describedby="PatientName" required>
+                    </div>
+                    <select class="form-select" name="location" aria-label="Default select UttarPradesh">
+                        <option value="Delhi">Delhi</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Chattisgarh">Chattisgarh</option>
+                        <option value="UttarPradesh" selected>UttarPradesh</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="WestBengal">WestBengal</option>
+                        <option value="HimachalPradesh">HimachalPradesh</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Andhrapradesh">Andhrapradesh</option>
+                        <option value="MadhyaPradesh">MadhyaPradesh</option>
+                        <option value="TamilNadu">TamilNadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Odisha">Odisha</option>
+                    </select>
+                    <div class="my-3">
+                        <input type="number" class="form-control" id="mobile-number" name="mobile" placeholder="Mobile"
+                            value="{{ request.form.get('mobile', '') }}" required>
+                        {% if error_message %}
+                        <small style="color: red;">{{ error_message }}</small><br>
+                        {% endif %}
+
+                    </div>
+                    <button class="btn btn-warning text-white flex align-items w-full">Book an appointment</button>
+                </form>
+                <!-- {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div id="flash-message" class="alert alert-success mt-3">
+                    {{ messages[0] }}
+                </div>
+                {% endif %}
+                {% endwith %} -->
+            </div>
+
+            <!-- Bootstrap carousel -->
+            <div id="carouselExampleSlidesOnly" class="carousel slide background" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item  active">
+                        <img src="{{url_for('static', filename='assests/image1fixed.jpg')}}" class="d-block w-100"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{url_for('static', filename='assests/bg-girl-01.webp')}}" class="d-block w-100"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{url_for('static', filename='assests/bg-girl-02.webp')}}" class="d-block w-100"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Container -->
+            <div class="wave-container">
+                <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 310" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+                            <stop stop-color="rgba(243, 106, 62, 0.87)" offset="0%"></stop>
+                            <stop stop-color="rgba(243, 106, 62, 0.87)" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)"
+                        d="M0,93L40,93C80,93,160,93,240,124C320,155,400,217,480,242.8C560,269,640,258,720,227.3C800,196,880,145,960,103.3C1040,62,1120,31,1200,31C1280,31,1360,62,1440,87.8C1520,114,1600,134,1680,129.2C1760,124,1840,93,1920,103.3C2000,114,2080,165,2160,186C2240,207,2320,196,2400,186C2480,176,2560,165,2640,149.8C2720,134,2800,114,2880,118.8C2960,124,3040,155,3120,165.3C3200,176,3280,165,3360,149.8C3440,134,3520,114,3600,93C3680,72,3760,52,3840,46.5C3920,41,4000,52,4080,93C4160,134,4240,207,4320,211.8C4400,217,4480,155,4560,118.8C4640,83,4720,72,4800,103.3C4880,134,4960,207,5040,232.5C5120,258,5200,238,5280,196.3C5360,155,5440,93,5520,77.5C5600,62,5680,93,5720,108.5L5760,124L5760,310L5720,310C5680,310,5600,310,5520,310C5440,310,5360,310,5280,310C5200,310,5120,310,5040,310C4960,310,4880,310,4800,310C4720,310,4640,310,4560,310C4480,310,4400,310,4320,310C4240,310,4160,310,4080,310C4000,310,3920,310,3840,310C3760,310,3680,310,3600,310C3520,310,3440,310,3360,310C3280,310,3200,310,3120,310C3040,310,2960,310,2880,310C2800,310,2720,310,2640,310C2560,310,2480,310,2400,310C2320,310,2240,310,2160,310C2080,310,2000,310,1920,310C1840,310,1760,310,1680,310C1600,310,1520,310,1440,310C1360,310,1280,310,1200,310C1120,310,1040,310,960,310C880,310,800,310,720,310C640,310,560,310,480,310C400,310,320,310,240,310C160,310,80,310,40,310L0,310Z">
+                    </path>
+                    <defs>
+                        <linearGradient id="sw-gradient-1" x1="0" x2="0" y1="1" y2="0">
+                            <stop stop-color="rgba(255, 255, 255, 1)" offset="0%"></stop>
+                            <stop stop-color="rgba(255, 255, 255, 1)" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <path style="transform:translate(0, 50px); opacity:0.9" fill="url(#sw-gradient-1)"
+                        d="M0,279L40,248C80,217,160,155,240,118.8C320,83,400,72,480,62C560,52,640,41,720,67.2C800,93,880,155,960,191.2C1040,227,1120,238,1200,201.5C1280,165,1360,83,1440,77.5C1520,72,1600,145,1680,170.5C1760,196,1840,176,1920,165.3C2000,155,2080,155,2160,160.2C2240,165,2320,176,2400,165.3C2480,155,2560,124,2640,134.3C2720,145,2800,196,2880,201.5C2960,207,3040,165,3120,170.5C3200,176,3280,227,3360,237.7C3440,248,3520,217,3600,217C3680,217,3760,248,3840,242.8C3920,238,4000,196,4080,165.3C4160,134,4240,114,4320,113.7C4400,114,4480,134,4560,155C4640,176,4720,196,4800,191.2C4880,186,4960,155,5040,160.2C5120,165,5200,207,5280,186C5360,165,5440,83,5520,62C5600,41,5680,83,5720,103.3L5760,124L5760,310L5720,310C5680,310,5600,310,5520,310C5440,310,5360,310,5280,310C5200,310,5120,310,5040,310C4960,310,4880,310,4800,310C4720,310,4640,310,4560,310C4480,310,4400,310,4320,310C4240,310,4160,310,4080,310C4000,310,3920,310,3840,310C3760,310,3680,310,3600,310C3520,310,3440,310,3360,310C3280,310,3200,310,3120,310C3040,310,2960,310,2880,310C2800,310,2720,310,2640,310C2560,310,2480,310,2400,310C2320,310,2240,310,2160,310C2080,310,2000,310,1920,310C1840,310,1760,310,1680,310C1600,310,1520,310,1440,310C1360,310,1280,310,1200,310C1120,310,1040,310,960,310C880,310,800,310,720,310C640,310,560,310,480,310C400,310,320,310,240,310C160,310,80,310,40,310L0,310Z">
+                    </path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Second Section -->
+        <section class="middle-section" style="text-align: center;" style="padding: 1rem;">
+            <h1>Centres of Excellence</h1>
+            <div class="rounded-button">
+                <!-- <div class="icon1">
+                    <a class="rounded-button" href="/about">
+                        <ion-icon name="heart-outline" size="large"></ion-icon>
+                    </a>
+                </div>
+                <div class="icon2">
+                    <a class="rounded-button" href="/about">
+                        <ion-icon name="heart-outline" size="large"></ion-icon>
+                    </a>
+                </div>
+                <div class="icon3">
+                    <a class="rounded-button" href="/about">
+                        <ion-icon name="heart-outline" size="large"></ion-icon>
+                    </a>
+                </div> -->
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer style="text-align: center;">
+            <p>&copy; 2024 Galgotias Hospital. All rights reserved.</p>
+            <a href="/about">About us</a>
+            <a href="/login">Login</a>
+        </footer>
+
+    </div>
+
+    <!-- Other -->
+    <!-- Additional buttons -->
+
+
+    <div id="message">Your response has been submitted!</div>
+    <!-- Scripts -->
+    <!-- Flash message -->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                flashMessage.style.display = 'block';
+                setTimeout(function() {
+                    flashMessage.style.display = 'none';
+                }, 2000); // Adjust the delay time (2000 milliseconds = 2 seconds)
+            }
+        });
+    </script> -->
+    <!-- script for submitted html -->
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Display the message
+            document.getElementById('message').style.display = 'block';
+
+            // Hide the message and submit the form after a delay
+            setTimeout(function () {
+                document.getElementById('myForm').submit();
+            }, 2000); // Adjust the delay time (2000 milliseconds = 2 seconds)
+        });
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- <script>
+        // Function to toggle the visibility of the navigation bar
+        function toggleNavbar() {
+            var navbar = document.getElementById('navbar');
+            var circleButton = document.querySelector('.circle-button');
+            navbar.style.display = navbar.style.display === 'none' ? 'block' : 'none';
+            circleButton.classList.toggle('active'); // Add or remove 'active' class
+        } -->
+    <!-- </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

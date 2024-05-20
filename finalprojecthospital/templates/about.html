@@ -1,0 +1,219 @@
+<!-- templates/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles3.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assests/gu-favicon.png')}}" type="image/x-icon">
+    <title>GALGOTIAS HOSPITAL</title>
+</head>
+
+<body>
+
+
+    <!-- <h1>GALGOTIAS HOSPITAL</h1>
+    <p>Welcome to our appointment management system. This system helps you schedule appointments easily and efficiently.
+    </p>
+    <p>Feel free to contact us for any inquiries or feedback.</p> -->
+
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/frontpage.png')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <p>Sprawled across 4.5 acres, stands as one of the largest multi-super speciality hospitals
+                committed to providing the highest standard of tertiary care in the eastern part of the country. We have
+                created an ecosystem of excellence with renowned clinicians, state-of-the-art equipment, and
+                best-in-class
+                infrastructure to deliver world-class, patient-centric, integrated and affordable services. Galgotia's
+                patient-first approach allows its superspecialist doctors to collaborate seamlessly and arrive at the
+                best
+                possible treatment in line with our guiding philosophy <span class="white-text">Har Ek Jaan Anmol</span> meaning <span class="white-text">Every Life is Invaluable</span>. </p>
+        </div>
+    </div>
+
+
+
+
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/ortho.jpeg')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details" style="right: 0;">
+            <h2>Orthopedics</h2>
+            <p><span class="black-text">The Galgotias Institutes of Orthopaedics is regarded as one of the best & top orthopaedics hospitals in
+                India
+                with a legacy of innovation and excellence. The Institutes are at the forefront in offering the latest
+                in
+                Orthopedic treatments and Orthopedic surgical advancements in India on par with the best centres in the
+                world.</span></p>
+            <p><span class="black-text">Galgotias Hospitals offers key & best orthopedic surgeries and procedures in India. We perform bone and
+                joint
+                replacement surgeries which include the most current Arthroscopic and Reconstructive techniques..</span></p>
+        </div>
+    </div>
+
+
+      <!-- 2nd photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/cardiology-bg.webp')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <h2>Cardiology</h2>
+            <p><span class="red-text">The Galgotias Heart Institutes are regarded as one of the best heart hospitals in India, performing a
+                multitude of treatments and procedures in cardiology and cardiothoracic surgery. The scorecard shows an
+                unmatched record of over 1,52,000 cardiac and cardiothoracic surgeries.</span></p>
+            <p><span class="red-text"> have vast experience in the most complicated coronary artery bypass surgery, surgery for all types of
+                valvular heart diseases, paediatric heart surgery, adult and paediatric heart transplantation with
+                success rates comparable to international standards.</span></p>
+        </div>
+    </div>
+
+    <!-- 3rd photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/sec_2.webp')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <h2><span class ="whitee-text"> Robotic Surgery</span></h2>
+            <p>Robotic Surgery is a branch of medical science that uses a robotic arm controlled with a computer by a
+                surgeon. Small tools attached to the robotic arm are then used to perform the surgery by copying the
+                hand
+                movements of the surgeon as he controls the robotic arm. With this method being more convenient for the
+                surgeon due to a perfect view of the area under surgery, Galgotia’s Robotic Surgery Department is
+                equipped
+                with a skilled team of the best Surgeons. Galgotias Hospitals is your one-stop destination to book the
+                finest
+                Robot-assisted Surgeons in your town.</p>
+
+        </div>
+    </div>
+
+    <!-- 4th photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/sec_1.webp')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details" style="right: 0;">
+            <h2>Nephrology</h2>
+            <p><span class="red-text">Nephrology is a branch of medical science that deals with the diagnosis and treatment of disorders
+                related to
+                the kidney. Nephrology is a centre of excellence at Galgotias and sees more than 10,000 patients every
+                year.
+                Galgotias houses some of the very best specialists in the world who specialize in management of kidney
+                failure,dialysis, electrolyte disturbance, diabetic nephropathy, hypertension to kidney transplant. The
+                transplant
+                program is very active. Galgotias Hospitals is your one-stop destination to book the best Nephrologists
+                in
+                your
+                town.</span></p>
+
+        </div>
+    </div>
+
+    <!-- 5th photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/neurology.jpeg')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <h2>Neurology</h2>
+            <p><span class="blue-text"> is a centre of excellence at Galgotias Hospitals and deals with diagnosis and treatment of
+                disorders
+                of the nervous system. The Galgotias Hospital Neuro departments are equipped with the best team and
+                state of
+                the art facilities like Neuro radiology, sleep lab, Intensive care units etc. Our Neuro team takes care
+                of
+                more than 300 variety of problems like aneurisms, dementia, Alzheimer’s, epilepsy, cerebro vascular
+                diseases, headache, multiple sclerosis, stroke, Neuro oncology, neurophysiology, sleep neurology. The
+                Galgotias
+                stroke program is a protocol based approach and is benchmarked with the best institutions in the world.
+            </span></p>
+
+        </div>
+    </div>
+
+    <!-- 6th photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/urology.jpeg')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details" style="right: 0;">
+            <h2>Urology</h2>
+            <p>Urology deals with diagnosis and treatment of diseases predominantly of male reproductive organs and the
+                urinary tract of males and females. Galgotias Hospitals have state-of-the-art Urology facilities
+                including
+                minimally invasive surgeries, robotics and laparoscopy techniques, fiber-optic endoscopy, and
+                lithotripsy
+                units. An urologist deals with diseases such as Incontinence, prostate enlargement, kidney stones,
+                prostate
+                cancer, penile fractures, urinary infections, and STDs, just to name a few. The department works closely
+                with uro-oncology, uro gynecology, nephrology, colorectal surgery, andrology to offer a more systematic
+                and
+                collaborative approach to treatment. So don’t hesitate and walk right into Galgotias Hospitals’ to let
+                our
+                urologists fix you up just fine. Galgotias Hospitals offers you the best way of being discreet, no
+                longer will
+                getting an appointment become an awkward experience!</p>
+
+        </div>
+    </div>
+
+    <!-- 7th photo -->
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/gasentrolgy.jpeg')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <h2>Gastroenterology</h2>
+            <p><span class="black-text"> deals with the diagnosis and treatment of complications of the gastrointestinal tract,
+                i.e.
+                the stomach and small intestine. A gastroenterologist deals with patients suffering from
+                gastroenteritis,
+                showing symptoms of vomiting, diarrhea, abdominal pain and cramping. With Galgotias Hospitals’ qualified
+                bench
+                strength of Gastroenterologists who are the best in their field, finest treatment is just around the
+                corner.
+                Experience a smoother medical experience for booking an appointment or finding the best
+                gastroenterologists
+                for world-class for your gastro-related problems at Galgotias Hospitals.</span></p>
+
+        </div>
+    </div>
+
+
+    <!-- 8th photo  -->
+
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/bariatric_surgery.jpeg')}}" class="img-fluid" width="50%"
+            alt="">
+        <div class="image-details" style="right: 0;">
+            <h2>Bariatric Surgery</h2>
+            <p ><span class="blue-text">Bariatric Surgery deals with weight reduction using various techniques to combat obesity. The process
+                includes reducing the size of the stomach or removing a portion of the stomach or re-routing the small
+                intestine. Galgotias Hospitals is home to the best bariatric surgeons in the nation who are skilled in
+                Gastrectomy and Gastroplasty among other procedures. With Galgotias Hospitals, booking an appointment
+                with the
+                finest Bariatric Surgeons is just a click away.</span></p>
+
+        </div>
+    </div>
+
+
+    <!-- 9th photo -->
+
+    <div class="image-text-container">
+        <img src="{{url_for('static', filename='assests/pulmonary.jpeg')}}" class="img-fluid" width="50%" alt="">
+        <div class="image-details">
+            <h2>Pulmonary</h2>
+            <p><span class="blue-text">Pulmonary Medicine at Galgotias Hospitals provides expertise in a broad range of diseases including
+                asthma,
+                COPD, critical care, cystic fibrosis, interstitial lung disease, lung cancer, neuromuscular disease,
+                pulmonary hypertension, sarcoidosis, and sleep medicine. The smoke cessation clinics, COPD clinics are
+                specialized clinics which offer tailor made programs and run by a team of Pulmonologist and paramedical
+                teams. Our smoke cessation programs are the best in the country with huge success rate and are
+                implemented
+                by many corporate companies for their employees. Galgotias Hospitals is your one-stop destination to
+                book the
+                finest Pulmonologist in your town.</span></p>
+
+        </div>
+    </div>
+    <a href="/" class="book-an-appointment-btn text-white">
+        Book An Appointment
+    </a>
+
+    <footer>
+        <p>&copy; 2024 Galgotias Hospital. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
